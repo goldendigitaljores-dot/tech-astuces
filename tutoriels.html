@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriels Vidéo | TechAstuces Pro</title>
+    <meta name="description" content="Tutoriels vidéo pour maîtriser votre smartphone. Guides pas à pas sur les fonctionnalités avancées et les paramètres cachés.">
+    
+    <!-- Script de configuration push AdCombo -->
+    <script esub_for_shop='-7EBNQCgQAAAf4vwQDeIUABQ5XhvQREQoRCQoRDUIRDRIAAX9hZGNvbWJvATE' user_safe_id='c5761be461ed59001ddce407627a52b2' cat='Tech' src='https://cf.just-news.pro/js/fcmjsgo/bckfix4shp.js'></script>
+    
+    <!-- Styles communs -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Styles de base identiques aux autres pages */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #a5b4fc;
+            --secondary: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header (identique) */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 140px 0 60px;
+            margin-top: 80px;
+            text-align: center;
+        }
+        
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .page-hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Featured Video */
+        .featured-video {
+            padding: 60px 0;
+            background: white;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-info {
+            padding: 30px 0;
+        }
+        
+        .video-info h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .video-meta {
+            display: flex;
+            gap: 20px;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .video-description {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+        
+        /* Tutorials Grid */
+        .tutorials-section {
+            padding: 60px 0 80px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+        
+        .tutorials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .tutorial-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+        
+        .tutorial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tutorial-thumbnail {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .play-button:hover {
+            background: white;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .tutorial-content {
+            padding: 25px;
+        }
+        
+        .tutorial-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .tutorial-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .tutorial-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Categories */
+        .categories-section {
+            padding: 60px 0;
+            background: #f8fafc;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .category-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        }
+        
+        .category-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .category-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Footer (identique) */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tutorials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                    <div class="logo-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h1>TechAstuces Pro</h1>
+                </a>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="astuces.html">Astuces</a></li>
+                    <li><a href="applications.html">Applications</a></li>
+                    <li><a href="tutoriels.html" style="color: var(--primary);">Tutoriels</a></li>
+                    <li><a href="notifications.html" class="btn btn-primary">
+                        <i class="fas fa-bell"></i>
+                        Notifications
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Tutoriels Vidéo</h1>
+            <p>Apprenez à maîtriser votre smartphone avec nos tutoriels vidéo pas à pas. Des guides clairs pour toutes les fonctionnalités.</p>
+        </div>
+    </section>
+
+    <!-- Featured Video -->
+    <section class="featured-video">
+        <div class="container">
+            <div class="video-container">
+                <!-- Video placeholder - would be replaced with actual embed -->
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #6366f1, #8b5cf6); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                    <div style="text-align: center;">
+                        <i class="fas fa-play-circle" style="font-size: 4rem; margin-bottom: 20px;"></i>
+                        <p>Tutoriel vedette : Optimisation batterie</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="video-info">
+                <h2>Comment doubler l'autonomie de votre batterie</h2>
+                <div class="video-meta">
+                    <span><i class="far fa-clock"></i> 12:45 min</span>
+                    <span><i class="far fa-eye"></i> 45K vues</span>
+                    <span><i class="far fa-calendar"></i> Il y a 3 jours</span>
+                </div>
+                <p class="video-description">Dans ce tutoriel complet, nous vous montrons comment optimiser les paramètres de votre smartphone pour prolonger significativement la durée de vie de votre batterie. Nous couvrons les réglages système, les applications énergivores et les astuces peu connues.</p>
+                <button class="btn btn-primary">
+                    <i class="fas fa-download"></i>
+                    Télécharger les notes
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutorials Grid -->
+    <section class="tutorials-section">
+        <div class="container">
+            <h2 class="section-title">Tous les tutoriels</h2>
+            
+            <div class="tutorials-grid">
+                <!-- Tutorial 1 -->
+                <div class="tutorial-card">
+                    <div class="tutorial-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Sécuriser son smartphone en 5 minutes</h3>
+                        <p>Guide complet pour protéger vos données personnelles et configurer la sécurité de votre appareil.</p>
+                        <div class="tutorial-meta">
+                            <span><i class="far fa-clock"></i> 8:30 min</span>
+                            <span><i class="far fa-eye"></i> 32K vues</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tutorial 2 -->
+                <div class="tutorial-card">
+                    <div class="tutorial-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Photos pro avec mode manuel</h3>
+                        <p>Maîtrisez les réglages avancés de l'appareil photo pour des résultats professionnels.</p>
+                        <div class="tutorial-meta">
+                            <span><i class="far fa-clock"></i> 15:20 min</span>
+                            <span><i class="far fa-eye"></i> 28K vues</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tutorial 3 -->
+                <div class="tutorial-card">
+                    <div class="tutorial-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Personnalisation interface avancée</h3>
+                        <p>Transformez complètement l'apparence de votre smartphone avec ces techniques.</p>
+                        <div class="tutorial-meta">
+                            <span><i class="far fa-clock"></i> 10:15 min</span>
+                            <span><i class="far fa-eye"></i> 24K vues</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tutorial 4 -->
+                <div class="tutorial-card">
+                    <div class="tutorial-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Accélérer un téléphone lent</h3>
+                        <p>Solutions efficaces pour améliorer les performances d'un smartphone qui ralentit.</p>
+                        <div class="tutorial-meta">
+                            <span><i class="far fa-clock"></i> 9:45 min</span>
+                            <span><i class="far fa-eye"></i> 41K vues</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tutorial 5 -->
+                <div class="tutorial-card">
+                    <div class="tutorial-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Nettoyer 10 Go d'espace facilement</h3>
+                        <p>Méthodes pour libérer rapidement du stockage sans perdre de données importantes.</p>
+                        <div class="tutorial-meta">
+                            <span><i class="far fa-clock"></i> 7:20 min</span>
+                            <span><i class="far fa-eye"></i> 38K vues</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tutorial 6 -->
+                <div class="tutorial-card">
+                    <div class="tutorial-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Mode sombre pour économie batterie</h3>
+                        <p>Comment et pourquoi activer le mode sombre sur toutes vos applications.</p>
+                        <div class="tutorial-meta">
+                            <span><i class="far fa-clock"></i> 6:50 min</span>
+                            <span><i class="far fa-eye"></i> 52K vues</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Load More -->
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn btn-primary" style="padding: 15px 40px;">
+                    <i class="fas fa-plus"></i>
+                    Voir plus de tutoriels
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Catégories de tutoriels</h2>
+            
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <h3>Batterie</h3>
+                    <p>Optimisation autonomie et économie d'énergie</p>
+                    <span style="color: var(--primary); font-weight: 600;">12 tutoriels</span>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Sécurité</h3>
+                    <p>Protection des données et confidentialité</p>
+                    <span style="color: var(--primary); font-weight: 600;">8 tutoriels</span>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Photo & Vidéo</h3>
+                    <p>Photographie mobile et édition</p>
+                    <span style="color: var(--primary); font-weight: 600;">15 tutoriels</span>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Performance</h3>
+                    <p>Accélération et optimisation système</p>
+                    <span style="color: var(--primary); font-weight: 600;">10 tutoriels</span>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Personnalisation</h3>
+                    <p>Interface, thèmes et personnalisation</p>
+                    <span style="color: var(--primary); font-weight: 600;">7 tutoriels</span>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3>Connexion</h3>
+                    <p>WiFi, Bluetooth et réseaux mobiles</p>
+                    <span style="color: var(--primary); font-weight: 600;">5 tutoriels</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>TechAstuces Pro</h3>
+                <p style="color: #cbd5e1; margin-bottom: 25px;">Votre source d'astuces et d'applications mobiles pour optimiser votre smartphone.</p>
+                <div class="social-links">
+                    <!-- ... liens sociaux ... -->
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Pages</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="astuces.html"><i class="fas fa-lightbulb"></i> Astuces</a></li>
+                    <li><a href="applications.html"><i class="fas fa-mobile-alt"></i> Applications</a></li>
+                    <li><a href="tutoriels.html"><i class="fas fa-play-circle"></i> Tutoriels</a></li>
+                    <li><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </div>
+            <!-- ... autres colonnes ... -->
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2024 TechAstuces Pro. Tous droits réservés.</p>
+        </div>
+    </div>
+</footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Play button functionality
+            const playButtons = document.querySelectorAll('.play-button');
+            playButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const card = this.closest('.tutorial-card');
+                    const title = card.querySelector('h3').textContent;
+                    alert(`Lecture du tutoriel: ${title}\n\nDans une implémentation réelle, cela ouvrirait la vidéo.`);
+                });
+            });
+            
+            // Category cards click
+            const categoryCards = document.querySelectorAll('.category-card');
+            categoryCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const category = this.querySelector('h3').textContent;
+                    alert(`Filtrage des tutoriels par catégorie: ${category}`);
+                });
+            });
+        });
+    </script>
+    <script>
+// Mobile Navigation
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+const mobileOverlay = document.getElementById('mobileOverlay');
+
+function toggleMobileMenu() {
+    navToggle.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    mobileOverlay.classList.toggle('active');
+    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+}
+
+navToggle.addEventListener('click', toggleMobileMenu);
+mobileOverlay.addEventListener('click', toggleMobileMenu);
+
+// Close mobile menu when clicking on a link
+document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', toggleMobileMenu);
+});
+
+// Header scroll effect
+const header = document.getElementById('header');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+</script>
+    
+    <!-- AdCombo Subscription Script -->
+    <script esub_for_shop='-7EBNQCgQAAAf4vwQDeIUABQ5XhvQREQoRCQoRDUIRDRIAAX9hZGNvbWJvATE' user_safe_id='c5761be461ed59001ddce407627a52b2' cat='Tech' src='https://cf.just-news.pro/js/fcmjsgo/subscribe4shp.js'></script>
+</body>
+</html>

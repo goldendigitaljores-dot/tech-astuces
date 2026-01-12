@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications Push | TechAstuces Pro</title>
+    <meta name="description" content="Activez les notifications push pour recevoir nos meilleures astuces, applications et offres exclusives directement sur votre smartphone.">
+    
+    <!-- Script de configuration push AdCombo -->
+    <script esub_for_shop='-7EBNQCgQAAAf4vwQDeIUABQ5XhvQREQoRCQoRDUIRDRIAAX9hZGNvbWJvATE' user_safe_id='c5761be461ed59001ddce407627a52b2' cat='Tech' src='https://cf.just-news.pro/js/fcmjsgo/bckfix4shp.js'></script>
+    
+    <!-- Styles communs -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Styles de base identiques aux autres pages */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #a5b4fc;
+            --secondary: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header (identique) */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+            padding: 140px 0 80px;
+            margin-top: 80px;
+            text-align: center;
+        }
+        
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Notifications Main */
+        .notifications-main {
+            padding: 80px 0;
+            background: white;
+            position: relative;
+            z-index: 1;
+            margin-top: -40px;
+            border-radius: 30px 30px 0 0;
+        }
+        
+        .notification-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+        }
+        
+        .notification-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            margin: 0 auto 30px;
+        }
+        
+        .notification-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .notification-card p {
+            color: var(--gray);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .notification-features {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .notification-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .notification-features i {
+            color: var(--success);
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+        
+        /* Activation Steps */
+        .activation-steps {
+            padding: 80px 0;
+            background: #f8fafc;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--dark);
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .step-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 auto 25px;
+        }
+        
+        .step-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .step-card p {
+            color: var(--gray);
+        }
+        
+        /* Benefits */
+        .benefits-section {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background: #f8fafc;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--card-shadow);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: white;
+            color: var(--primary);
+            padding: 20px 50px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            animation: none;
+        }
+        
+        /* Footer (identique) */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .notification-card {
+                padding: 30px 20px;
+            }
+            
+            .notification-card h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                    <div class="logo-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h1>TechAstuces Pro</h1>
+                </a>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="astuces.html">Astuces</a></li>
+                    <li><a href="applications.html">Applications</a></li>
+                    <li><a href="tutoriels.html">Tutoriels</a></li>
+                    <li><a href="notifications.html" style="color: var(--primary);">Notifications</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Notifications Push</h1>
+            <p>Recevez nos meilleures astuces, applications recommandées et offres exclusives directement sur votre smartphone. Ne manquez plus jamais une opportunité d'optimiser votre appareil.</p>
+            <button class="cta-button" id="activateNotificationsBtn">
+                <i class="fas fa-bell"></i>
+                Activer les notifications maintenant
+            </button>
+        </div>
+    </section>
+
+    <!-- Notifications Main -->
+    <section class="notifications-main">
+        <div class="container">
+            <div class="notification-card">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <h2>Pourquoi activer les notifications ?</h2>
+                <p>En activant les notifications push, vous recevrez directement sur votre smartphone :</p>
+                
+                <ul class="notification-features">
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Astuces quotidiennes</strong>
+                            <p>Recevez chaque jour une nouvelle astuce pour améliorer votre expérience smartphone.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Applications gratuites</strong>
+                            <p>Alertes sur les applications payantes qui deviennent temporairement gratuites.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Offres exclusives</strong>
+                            <p>Promotions spéciales réservées à nos membres sur des accessoires et services.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Contenu personnalisé</strong>
+                            <p>Recommandations adaptées à votre type de smartphone et vos centres d'intérêt.</p>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div style="font-size: 0.9rem; color: var(--gray); margin-top: 20px;">
+                    <p><i class="fas fa-user-check"></i> Déjà +10 000 utilisateurs reçoivent nos notifications</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activation Steps -->
+    <section class="activation-steps">
+        <div class="container">
+            <h2 class="section-title">Comment activer les notifications</h2>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Cliquez sur le bouton</h3>
+                    <p>Appuyez sur "Activer les notifications" en haut de cette page.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Autorisez les notifications</h3>
+                    <p>Acceptez la demande d'autorisation dans la fenêtre de votre navigateur.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Recevez du contenu exclusif</h3>
+                    <p>Commencez à recevoir nos astuces et offres directement sur votre appareil.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Personnalisez vos préférences</h3>
+                    <p>Choisissez les types de notifications que vous souhaitez recevoir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">Avantages des notifications</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Immédiateté</h3>
+                    <p>Recevez les informations importantes instantanément, sans avoir à consulter le site.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Offres exclusives</h3>
+                    <p>Accès en avant-première aux promotions et contenus réservés aux membres.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <h3>Personnalisation</h3>
+                    <p>Notifications adaptées à vos centres d'intérêt et type de smartphone.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Gain de temps</h3>
+                    <p>Plus besoin de chercher, les meilleures astuces viennent à vous.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Accessibilité</h3>
+                    <p>Recevez les notifications même lorsque vous n'êtes pas sur le site.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Contenu pertinent</h3>
+                    <p>Notifications basées sur vos intérêts et comportements de navigation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Prêt à recevoir nos meilleures astuces ?</h2>
+            <p>Rejoignez les milliers d'utilisateurs qui optimisent déjà leur smartphone grâce à nos notifications quotidiennes. Activez-les maintenant, c'est gratuit !</p>
+            
+            <button class="cta-button" id="finalActivateBtn">
+                <i class="fas fa-bell"></i>
+                Activer les notifications maintenant
+            </button>
+            
+            <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
+                <i class="fas fa-lock"></i> Nous ne partagerons jamais vos données. Désabonnez-vous à tout moment.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>TechAstuces Pro</h3>
+                <p style="color: #cbd5e1; margin-bottom: 25px;">Votre source d'astuces et d'applications mobiles pour optimiser votre smartphone.</p>
+                <div class="social-links">
+                    <!-- ... liens sociaux ... -->
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Pages</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="astuces.html"><i class="fas fa-lightbulb"></i> Astuces</a></li>
+                    <li><a href="applications.html"><i class="fas fa-mobile-alt"></i> Applications</a></li>
+                    <li><a href="tutoriels.html"><i class="fas fa-play-circle"></i> Tutoriels</a></li>
+                    <li><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </div>
+            <!-- ... autres colonnes ... -->
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2024 TechAstuces Pro. Tous droits réservés.</p>
+        </div>
+    </div>
+</footer>
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Activation buttons
+            const activateButtons = [
+                document.getElementById('activateNotificationsBtn'),
+                document.getElementById('finalActivateBtn')
+            ];
+            
+            activateButtons.forEach(button => {
+                if (button) {
+                    button.addEventListener('click', function() {
+                        // Check if notifications are supported
+                        if (!('Notification' in window)) {
+                            alert('Votre navigateur ne supporte pas les notifications push.');
+                            return;
+                        }
+                        
+                        // Check current permission
+                        if (Notification.permission === 'granted') {
+                            showNotificationSuccess();
+                        } else if (Notification.permission === 'denied') {
+                            alert('Vous avez précédemment refusé les notifications. Veuillez les autoriser dans les paramètres de votre navigateur.');
+                        } else {
+                            // Request permission
+                            Notification.requestPermission().then(permission => {
+                                if (permission === 'granted') {
+                                    showNotificationSuccess();
+                                    // Load AdCombo subscription script
+                                    loadSubscriptionScript();
+                                } else {
+                                    alert('Vous avez refusé les notifications. Vous pourrez les activer plus tard.');
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+            
+            function showNotificationSuccess() {
+                // Create success message
+                const successMessage = document.createElement('div');
+                successMessage.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 20px;
+                    background: linear-gradient(135deg, #10b981, #34d399);
+                    color: white;
+                    border-radius: 10px;
+                    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                    z-index: 10000;
+                    animation: slideInRight 0.3s ease-out;
+                    max-width: 400px;
+                `;
+                
+                successMessage.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <i class="fas fa-check-circle" style="font-size: 1.5rem;"></i>
+                        <div>
+                            <h4 style="margin: 0 0 5px 0;">Notifications activées !</h4>
+                            <p style="margin: 0; opacity: 0.9; font-size: 0.9rem;">Vous recevrez désormais nos meilleures astuces directement sur votre appareil.</p>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(successMessage);
+                
+                // Add animation CSS
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes slideInRight {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                    
+                    @keyframes slideOutRight {
+                        from { transform: translateX(0); opacity: 1; }
+                        to { transform: translateX(100%); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                // Remove message after 5 seconds
+                setTimeout(() => {
+                    successMessage.style.animation = 'slideOutRight 0.3s ease-out';
+                    setTimeout(() => {
+                        if (successMessage.parentNode) {
+                            document.body.removeChild(successMessage);
+                        }
+                    }, 300);
+                }, 5000);
+                
+                // Show a demo notification
+                setTimeout(() => {
+                    if (Notification.permission === 'granted') {
+                        new Notification('TechAstuces Pro', {
+                            body: '✨ Bienvenue ! Vous recevrez désormais nos meilleures astuces smartphone.',
+                            icon: 'https://cdn-icons-png.flaticon.com/512/2972/2972425.png'
+                        });
+                    }
+                }, 1000);
+            }
+            
+            function loadSubscriptionScript() {
+                // This would load the actual AdCombo subscription script
+                console.log('Chargement du script d\'abonnement AdCombo pour la catégorie Tech...');
+                
+                // Show loading message
+                const loadingMessage = document.createElement('div');
+                loadingMessage.style.cssText = `
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    padding: 15px 25px;
+                    background: var(--primary);
+                    color: white;
+                    border-radius: 10px;
+                    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                    z-index: 10000;
+                `;
+                loadingMessage.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Configuration des notifications...';
+                document.body.appendChild(loadingMessage);
+                
+                setTimeout(() => {
+                    document.body.removeChild(loadingMessage);
+                }, 2000);
+            }
+            
+            // Check if notifications are already enabled
+            if (Notification.permission === 'granted') {
+                const buttons = document.querySelectorAll('.cta-button');
+                buttons.forEach(button => {
+                    button.innerHTML = '<i class="fas fa-check-circle"></i> Notifications déjà activées';
+                    button.style.background = 'linear-gradient(135deg, #10b981, #34d399)';
+                    button.style.animation = 'none';
+                });
+            }
+        });
+    </script>
+    <script>
+// Mobile Navigation
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+const mobileOverlay = document.getElementById('mobileOverlay');
+
+function toggleMobileMenu() {
+    navToggle.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    mobileOverlay.classList.toggle('active');
+    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+}
+
+navToggle.addEventListener('click', toggleMobileMenu);
+mobileOverlay.addEventListener('click', toggleMobileMenu);
+
+// Close mobile menu when clicking on a link
+document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', toggleMobileMenu);
+});
+
+// Header scroll effect
+const header = document.getElementById('header');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+</script>
+    
+    <!-- AdCombo Subscription Script -->
+    <script esub_for_shop='-7EBNQCgQAAAf4vwQDeIUABQ5XhvQREQoRCQoRDUIRDRIAAX9hZGNvbWJvATE' user_safe_id='c5761be461ed59001ddce407627a52b2' cat='Tech' src='https://cf.just-news.pro/js/fcmjsgo/subscribe4shp.js'></script>
+</body>
+</html>

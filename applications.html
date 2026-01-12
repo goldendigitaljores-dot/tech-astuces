@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applications Smartphone | TechAstuces Pro</title>
+    <meta name="description" content="Découvrez les meilleures applications smartphone gratuites et payantes. Productivité, photo, sécurité et bien plus.">
+    
+    <!-- Script de configuration push AdCombo -->
+    <script esub_for_shop='-7EBNQCgQAAAf4vwQDeIUABQ5XhvQREQoRCQoRDUIRDRIAAX9hZGNvbWJvATE' user_safe_id='c5761be461ed59001ddce407627a52b2' cat='Tech' src='https://cf.just-news.pro/js/fcmjsgo/bckfix4shp.js'></script>
+    
+    <!-- Styles communs -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Styles de base identiques à astuces.html */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #a5b4fc;
+            --secondary: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header (identique) */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #f1f5f9;
+            color: var(--dark);
+        }
+        
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 140px 0 60px;
+            margin-top: 80px;
+        }
+        
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .page-hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 800px;
+        }
+        
+        /* Apps Filter */
+        .apps-filter {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            margin: 40px 0;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-tab {
+            padding: 10px 20px;
+            background: #f1f5f9;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-tab.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+        
+        /* Apps Grid */
+        .apps-section {
+            padding: 40px 0 80px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+        
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .app-card-large {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+        
+        .app-card-large:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .app-header {
+            display: flex;
+            align-items: center;
+            padding: 25px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .app-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin-right: 20px;
+        }
+        
+        .app-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        
+        .app-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .app-content {
+            padding: 25px;
+        }
+        
+        .app-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .app-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .app-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .app-features i {
+            color: var(--success);
+        }
+        
+        .app-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .app-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .app-price.free {
+            color: var(--success);
+        }
+        
+        /* Footer (identique) */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .app-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .app-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                    <div class="logo-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h1>TechAstuces Pro</h1>
+                </a>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="astuces.html">Astuces</a></li>
+                    <li><a href="applications.html" style="color: var(--primary);">Applications</a></li>
+                    <li><a href="tutoriels.html">Tutoriels</a></li>
+                    <li><a href="notifications.html" class="btn btn-primary">
+                        <i class="fas fa-bell"></i>
+                        Notifications
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Applications Smartphone</h1>
+            <p>Découvrez notre sélection des meilleures applications pour optimiser votre smartphone. Gratuites, payantes, indispensables et innovantes.</p>
+        </div>
+    </section>
+
+    <!-- Apps Filter -->
+    <div class="container">
+        <div class="apps-filter">
+            <h2 style="margin-bottom: 20px;">Filtrer les applications</h2>
+            
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">Toutes</button>
+                <button class="filter-tab" data-filter="productivity">Productivité</button>
+                <button class="filter-tab" data-filter="photo">Photo & Vidéo</button>
+                <button class="filter-tab" data-filter="security">Sécurité</button>
+                <button class="filter-tab" data-filter="utility">Utilitaires</button>
+                <button class="filter-tab" data-filter="free">Gratuites</button>
+                <button class="filter-tab" data-filter="paid">Payantes</button>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" placeholder="Rechercher une application...">
+                <button class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Apps Grid -->
+    <div class="container">
+        <div class="apps-section">
+            <h2 class="section-title">Applications recommandées</h2>
+            
+            <div class="apps-grid">
+                <!-- App 1 -->
+                <div class="app-card-large" data-category="productivity free">
+                    <div class="app-header">
+                        <div class="app-icon" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="app-info">
+                            <h3>TaskMaster Pro</h3>
+                            <div class="app-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>4.7</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="app-content">
+                        <p class="app-description">Gestionnaire de tâches avancé avec synchronisation cloud, rappels intelligents et interface minimaliste.</p>
+                        
+                        <ul class="app-features">
+                            <li><i class="fas fa-check-circle"></i> Synchronisation multi-appareils</li>
+                            <li><i class="fas fa-check-circle"></i> Rappels intelligents</li>
+                            <li><i class="fas fa-check-circle"></i> Partage de listes</li>
+                            <li><i class="fas fa-check-circle"></i> Mode hors ligne</li>
+                        </ul>
+                        
+                        <div class="app-footer">
+                            <div class="app-price free">GRATUIT</div>
+                            <button class="btn btn-primary">Voir détails</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- App 2 -->
+                <div class="app-card-large" data-category="photo paid">
+                    <div class="app-header">
+                        <div class="app-icon" style="background: linear-gradient(135deg, #f59e0b, #f97316);">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="app-info">
+                            <h3>ProShot Mobile</h3>
+                            <div class="app-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>4.2</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="app-content">
+                        <p class="app-description">Contrôlez manuellement tous les paramètres de votre appareil photo comme un professionnel.</p>
+                        
+                        <ul class="app-features">
+                            <li><i class="fas fa-check-circle"></i> Contrôles manuels complets</li>
+                            <li><i class="fas fa-check-circle"></i> Support RAW</li>
+                            <li><i class="fas fa-check-circle"></i> Éditeur intégré</li>
+                            <li><i class="fas fa-check-circle"></i> Présets personnalisables</li>
+                        </ul>
+                        
+                        <div class="app-footer">
+                            <div class="app-price">4.99€</div>
+                            <button class="btn btn-primary">Voir détails</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- App 3 -->
+                <div class="app-card-large" data-category="security free">
+                    <div class="app-header">
+                        <div class="app-icon" style="background: linear-gradient(135deg, #10b981, #34d399);">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="app-info">
+                            <h3>SecureVault</h3>
+                            <div class="app-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="app-content">
+                        <p class="app-description">Coffre-fort numérique et gestionnaire de mots de passe avec authentification biométrique.</p>
+                        
+                        <ul class="app-features">
+                            <li><i class="fas fa-check-circle"></i> Authentification biométrique</li>
+                            <li><i class="fas fa-check-circle"></i> Génération de mots de passe</li>
+                            <li><i class="fas fa-check-circle"></i> Synchronisation sécurisée</li>
+                            <li><i class="fas fa-check-circle"></i> Alertes de fuite</li>
+                        </ul>
+                        
+                        <div class="app-footer">
+                            <div class="app-price free">GRATUIT</div>
+                            <button class="btn btn-primary">Voir détails</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- App 4 -->
+                <div class="app-card-large" data-category="utility free">
+                    <div class="app-header">
+                        <div class="app-icon" style="background: linear-gradient(135deg, #3b82f6, #60a5fa);">
+                            <i class="fas fa-broom"></i>
+                        </div>
+                        <div class="app-info">
+                            <h3>StorageCleaner</h3>
+                            <div class="app-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>4.6</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="app-content">
+                        <p class="app-description">Analysez et libérez de l'espace de stockage en supprimant les fichiers inutiles et doublons.</p>
+                        
+                        <ul class="app-features">
+                            <li><i class="fas fa-check-circle"></i> Analyse approfondie</li>
+                            <li><i class="fas fa-check-circle"></i> Suppression des doublons</li>
+                            <li><i class="fas fa-check-circle"></i> Nettoyage cache</li>
+                            <li><i class="fas fa-check-circle"></i> Historique des suppressions</li>
+                        </ul>
+                        
+                        <div class="app-footer">
+                            <div class="app-price free">GRATUIT</div>
+                            <button class="btn btn-primary">Voir détails</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- App 5 -->
+                <div class="app-card-large" data-category="productivity paid">
+                    <div class="app-header">
+                        <div class="app-icon" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="app-info">
+                            <h3>FocusFlow</h3>
+                            <div class="app-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>4.1</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="app-content">
+                        <p class="app-description">Minuteur Pomodoro avancé avec statistiques de productivité et blocage d'applications.</p>
+                        
+                        <ul class="app-features">
+                            <li><i class="fas fa-check-circle"></i> Technique Pomodoro</li>
+                            <li><i class="fas fa-check-circle"></i> Blocage d'applications</li>
+                            <li><i class="fas fa-check-circle"></i> Statistiques détaillées</li>
+                            <li><i class="fas fa-check-circle"></i> Sons d'ambiance</li>
+                        </ul>
+                        
+                        <div class="app-footer">
+                            <div class="app-price">2.99€</div>
+                            <button class="btn btn-primary">Voir détails</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- App 6 -->
+                <div class="app-card-large" data-category="photo free">
+                    <div class="app-header">
+                        <div class="app-icon" style="background: linear-gradient(135deg, #ec4899, #f472b6);">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="app-info">
+                            <h3>PhotoEdit Pro</h3>
+                            <div class="app-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>4.5</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="app-content">
+                    <p class="app-description">Éditeur photo puissant avec filtres professionnels, outils de retouche avancés et calques.</p>
+                    
+                    <ul class="app-features">
+                        <li><i class="fas fa-check-circle"></i> +100 filtres professionnels</li>
+                        <li><i class="fas fa-check-circle"></i> Outils de retouche avancés</li>
+                        <li><i class="fas fa-check-circle"></i> Support calques</li>
+                        <li><i class="fas fa-check-circle"></i> Export haute qualité</li>
+                    </ul>
+                    
+                    <div class="app-footer">
+                        <div class="app-price free">GRATUIT</div>
+                        <button class="btn btn-primary">Voir détails</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Load More Button -->
+        <div style="text-align: center; margin-top: 40px;">
+            <button class="btn btn-primary" style="padding: 15px 40px;">
+                <i class="fas fa-plus"></i>
+                Charger plus d'applications
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>TechAstuces Pro</h3>
+                <p style="color: #cbd5e1; margin-bottom: 25px;">Votre source d'astuces et d'applications mobiles pour optimiser votre smartphone.</p>
+                <div class="social-links">
+                    <!-- ... liens sociaux ... -->
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Pages</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="astuces.html"><i class="fas fa-lightbulb"></i> Astuces</a></li>
+                    <li><a href="applications.html"><i class="fas fa-mobile-alt"></i> Applications</a></li>
+                    <li><a href="tutoriels.html"><i class="fas fa-play-circle"></i> Tutoriels</a></li>
+                    <li><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </div>
+            <!-- ... autres colonnes ... -->
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2024 TechAstuces Pro. Tous droits réservés.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Filtrage des applications
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const appCards = document.querySelectorAll('.app-card-large');
+        
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Active tab
+                filterTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                
+                // Filter apps
+                appCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'block';
+                    } else {
+                        const categories = card.getAttribute('data-category');
+                        if (categories.includes(filter)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+        
+        // Search functionality
+        const searchInput = document.querySelector('.search-box input');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            appCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('.app-description').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+// Mobile Navigation
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+const mobileOverlay = document.getElementById('mobileOverlay');
+
+function toggleMobileMenu() {
+    navToggle.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    mobileOverlay.classList.toggle('active');
+    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+}
+
+navToggle.addEventListener('click', toggleMobileMenu);
+mobileOverlay.addEventListener('click', toggleMobileMenu);
+
+// Close mobile menu when clicking on a link
+document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', toggleMobileMenu);
+});
+
+// Header scroll effect
+const header = document.getElementById('header');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+</script>
+<!-- AdCombo Subscription Script -->
+<script esub_for_shop='-7EBNQCgQAAAf4vwQDeIUABQ5XhvQREQoRCQoRDUIRDRIAAX9hZGNvbWJvATE' user_safe_id='c5761be461ed59001ddce407627a52b2' cat='Tech' src='https://cf.just-news.pro/js/fcmjsgo/subscribe4shp.js'></script>
+</body>
+</html>
